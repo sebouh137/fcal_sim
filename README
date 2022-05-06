@@ -1,0 +1,21 @@
+CLAS12 FCAL README
+
+--------------------------------------------------
+
+Before running the simulation, one must install GEMC, following Maurizio's instructions on http://gemc.jlab.org
+
+On MacOs, he's provided a DMG for the 
+
+
+set the environmental variable $GEMC to point to the correct location.
+(note: this line can be added to your ~/.bashrc, ~/.bash_profile or equivalent):
+
+export GEMC=/Applications/gemc-2.6.app/gemc.app/Contents/Resources/
+
+The command to build the geometry, banks, hit defs and materials is:
+perl ./fcal.pl config.dat
+
+Then, to run the simulation
+/Applications/gemc-2.6.app/gemc.app/Contents/MacOs/gemc.command fcal.gcard
+
+Play around with settings in the GUI.  

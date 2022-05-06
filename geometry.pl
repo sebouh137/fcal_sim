@@ -62,7 +62,7 @@ sub build_paddles
 	    my $y      = sprintf("%.3f", $SPACING_Y*$n+$PLATE_GAP*int(($n-1)/2));
 	    #my $y      = sprintf("%.3f", $SPACING_Y*$n);
 	    my $z      = sprintf("%.3f", $SPACING_Z*$m);
-	    $detector{"pos"}        = "$0*cm $y*cm $z*cm";
+	    $detector{"pos"}        = "0*cm $y*cm $z*cm";
 	    $detector{"rotation"}   = "0*deg 0*deg 0*deg";
 	    $detector{"color"}      = "66bbff";
 	    $detector{"type"}       = "Box";
