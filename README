@@ -4,18 +4,37 @@ CLAS12 FCAL README
 
 Before running the simulation, one must install GEMC, following Maurizio's instructions on http://gemc.jlab.org
 
-On MacOs, he's provided a DMG for the 
 
+Set the environmental variable $GEMC to point to the location where the GEMC resources are located.
 
-set the environmental variable $GEMC to point to the correct location.
-(note: this line can be added to your ~/.bashrc, ~/.bash_profile or equivalent):
+If you're on MacOS, add the following lines to your ~/.bash_profile (replacing 2.6 with whatever version you have)
 
 export GEMC=/Applications/gemc-2.6.app/gemc.app/Contents/Resources/
+export GEMC_DATA_DIR=$GEMC
+alias gemc='$GEMC/../MacOS/gemc.command' #MacOS only
 
-The command to build the geometry, banks, hit defs and materials is:
+Similarly, on Linux, add the first two of the lines above ~/.bashrc file, with $GEMC pointing to the installation directory.  You will then need to put the directory containing the gemc executable in the $PATH.  
+
+
+You'll need the magnetic fields in order to run the simulations
+wget http://clasweb.jlab.org/12gev/field_maps/clas12SolenoidFieldMap.dat $GEMC_DATA_DIR
+wget http://clasweb.jlab.org/12gev/field_maps/clas12TorusOriginalMap.dat $GEMC_DATA_DIR
+
+You will also need to soft-link the "experiments" directory to the one in the GEMC installation in order to get the rest of clas12 into the simulation.  Run this in the same directory where the fcal.gcard is located:
+
+ln -s $GEMC_DATA_DIR/experiments experiments
+
+To build the geometry, banks, hit defs and materials for the fcal, run the following command
+
 perl ./fcal.pl config.dat
 
-Then, to run the simulation
-/Applications/gemc-2.6.app/gemc.app/Contents/MacOs/gemc.command fcal.gcard
+To run the simulation with the fcal + the rest of the CLAS12:
 
-Play around with settings in the GUI.  
+gemc fcal.gcard
+
+To run the simulation with only the fcal:
+gemc fcal_only.gcard
+
+You can override the settings of a gcard by adding additional arguments, for instance, "gemc fcal_only.gcard -USE_GUI=0" will disable the graphical user interface.  You can learn more about GEMC settings by doing
+
+gemc -help

@@ -14,7 +14,8 @@ my $dx=300/2;
 my $dy=5.13/2;
 my $dz=2/2;
 
-
+my $y0=-114.49;
+my $z0=9.0;
 
 sub makeFCAL
 {
@@ -29,7 +30,7 @@ sub build_mother
     $detector{"name"}        = "fcal";
     $detector{"mother"}      = "root";
     $detector{"description"} = "FCAL Mother Volume";
-    $detector{"pos"}         = "0*cm 0.0*cm 6*m";
+    $detector{"pos"}         = "0*cm 0.0*cm $z0*m";
     $detector{"rotation"}    = "0*deg 0*deg 0*deg";
     $detector{"color"}       = "000000";
     $detector{"type"}        = "Box";
@@ -59,7 +60,7 @@ sub build_paddles
 	    # positioning
 
 	    my $x      = "0";
-	    my $y      = sprintf("%.3f", $SPACING_Y*$n+$PLATE_GAP*int(($n-1)/2));
+	    my $y      = sprintf("%.3f", $y0-$dy/2.+$SPACING_Y*$n+$PLATE_GAP*int(($n-1)/2));
 	    #my $y      = sprintf("%.3f", $SPACING_Y*$n);
 	    my $z      = sprintf("%.3f", $SPACING_Z*$m);
 	    $detector{"pos"}        = "0*cm $y*cm $z*cm";
