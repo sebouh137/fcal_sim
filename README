@@ -15,7 +15,6 @@ alias gemc='$GEMC/../MacOS/gemc.command' #MacOS only
 
 Similarly, on Linux, add the first two of the lines above ~/.bashrc file, with $GEMC pointing to the installation directory.  You will then need to put the directory containing the gemc executable in the $PATH.  
 
-
 You'll need the magnetic fields in order to run the simulations
 wget http://clasweb.jlab.org/12gev/field_maps/clas12SolenoidFieldMap.dat $GEMC_DATA_DIR
 wget http://clasweb.jlab.org/12gev/field_maps/clas12TorusOriginalMap.dat $GEMC_DATA_DIR
@@ -38,3 +37,20 @@ gemc fcal_only.gcard
 You can override the settings of a gcard by adding additional arguments, for instance, "gemc fcal_only.gcard -USE_GUI=0" will disable the graphical user interface.  You can learn more about GEMC settings by doing
 
 gemc -help
+
+
+To run gemc on docker,
+
+docker pull jeffersonlab/gemc:2.9
+
+#Basic example of running docker
+docker run -it --rm jeffersonlab/gemc:2.9
+
+#Example with addtional arguments to mount a directory and run this in a browser.  
+docker run -it --rm -v /Users/spaul/fcal_sim/:/fcal/  -p 127.0.0.1:6080:6080 jeffersonlab/gemc:2.9
+
+#similar example for Windows:
+docker run -it --rm -v c:/fcal_sim/:/fcal/  -p 127.0.0.1:6080:6080 jeffersonlab/gemc:2.9
+
+To convert the output to root: (do this inside the docker container.  this must be done in the same directory where the fcal__bank.txt file resides.  In the example below, the input file is out.ev, and the resulting output file is out.root)
+evio2root -INPUTF=out.ev -B=fcal

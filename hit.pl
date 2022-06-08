@@ -11,9 +11,9 @@ sub define_hit
 	my %hit = init_hit();
 	$hit{"name"}            = "fcal";
 	$hit{"description"}     = "fcal hit definitions";
-	$hit{"identifiers"}     = "layer,paddle";
+	$hit{"identifiers"}     = "sector,layer,paddle,side";
 	$hit{"signalThreshold"} = "0.5*MeV";
-	$hit{"timeWindow"}      = "5*ns";
+	$hit{"timeWindow"}      = "100*ns";
 	$hit{"prodThreshold"}   = "1*mm";
 	$hit{"maxStep"}         = "1*cm";
 	$hit{"delay"}           = "50*ns";

@@ -2,11 +2,11 @@
 
 	<detector name="fcal" factory="TEXT" variation="original"/>
 	<option name="geometry" value="1400x1200"/>
+	<option name="ALLRAWS" value="flux,fcal"/>
+	<option name="INTEGRATEDRAW" value="flux,fcal"/>
 	
-	<option name="INTEGRATEDRAW" value="flux"/>
-	
-	<option name="BEAM_P" value="mu-, 1.0*GeV, 5*deg, 10*deg"/>
-	<option name="SPREAD_P"  value="0.0*GeV, 5*deg, 180*deg"/>
+	<option name="BEAM_P" value="mu-, 1.0*GeV, 10*deg, 0*deg"/>
+	<option name="SPREAD_P"  value="0.0*GeV, 10*deg, 180*deg"/>
 	
 	<option name="OUTPUT" value="evio, out.ev"/>
 	<option name="SAVE_ALL_MOTHERS" value="1"/>
