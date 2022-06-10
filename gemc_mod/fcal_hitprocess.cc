@@ -40,7 +40,7 @@ static fcalConstants initializeFCALConstants(int runno, string digiVariation = "
 	
 
 	for(int layer=0; layer<21; layer++){
-          ftc.npaddles[layer] = 20;
+          ftc.npaddles[layer] = 40;
           ftc.thick[layer] = 2;
 	  ftc.dEMIP[layer] = ftc.thick[layer] * ftc.dEdxMIP;
 	}
@@ -49,7 +49,7 @@ static fcalConstants initializeFCALConstants(int runno, string digiVariation = "
 	double veff = 16;
 	for (int lay =0; lay<21; lay++){
 	  ftc.tres[0][lay].resize(ftc.npaddles[lay]);
-	  for(int paddle=0; paddle<20; paddle++){
+	  for(int paddle=0; paddle<ftc.npaddles[lay]; paddle++){
 	    ftc.attlen[0][lay][0].push_back(attlen);
 	    ftc.attlen[0][lay][1].push_back(attlen);
 	    ftc.veff[0][lay][0].push_back(veff);
@@ -97,7 +97,7 @@ static fcalConstants initializeFCALConstants(int runno, string digiVariation = "
 
 	// filling translation table                                                         
 	for (int lay =0; lay<21; lay++){
-	  for(int paddle=0; paddle<20; paddle++){
+	  for(int paddle=0; paddle<ftc.npaddles[lay]; paddle++){
 	    for(int pmt=0; pmt<4; pmt++){
 	      
 	      int crate = lay*210+paddle*10+pmt;//dummy values

@@ -27,6 +27,9 @@ To build the geometry, banks, hit defs and materials for the fcal, run the follo
 
 perl ./fcal.pl config.dat
 
+Then, to recompile GEMC with the fcal hit process, run the following script
+./mod_and_recompile_gemc.sh
+
 To run the simulation with the fcal + the rest of the CLAS12:
 
 gemc fcal.gcard
@@ -51,6 +54,10 @@ docker run -it --rm -v /Users/spaul/fcal_sim/:/fcal/  -p 127.0.0.1:6080:6080 jef
 
 #similar example for Windows:
 docker run -it --rm -v c:/fcal_sim/:/fcal/  -p 127.0.0.1:6080:6080 jeffersonlab/gemc:2.9
+
+After opening the docker container, make sure to recompile gemc with the fcal hitprocess, by running the following script inside the docker container, before running gemc in the docker container.
+
+cd /fcal;; ./mod_and_recompile_gemc.sh
 
 To convert the output to root: (do this inside the docker container.  this must be done in the same directory where the fcal__bank.txt file resides.  In the example below, the input file is out.ev, and the resulting output file is out.root)
 evio2root -INPUTF=out.ev -B=fcal
