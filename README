@@ -60,4 +60,7 @@ After opening the docker container, make sure to recompile gemc with the fcal hi
 cd /fcal;; ./mod_and_recompile_gemc.sh
 
 To convert the output to root: (do this inside the docker container.  this must be done in the same directory where the fcal__bank.txt file resides.  In the example below, the input file is out.ev, and the resulting output file is out.root)
-evio2root -INPUTF=out.ev -B=fcal
+
+evio2root -INPUTF=out.ev -B=fcal -R=fcal
+
+The -B=fcal indicates that the fcal__bank.txt will be read to determine which digitization variables to use.  The -R=fcal indicates that the raw output for the fcal will be included, not just digitized output.  
